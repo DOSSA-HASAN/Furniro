@@ -1,0 +1,106 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.transformation-main-cont{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #660411;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0 5px 10px #2e2d2d;
+}
+
+.transformation-main-cont h2{
+    color: #fff;
+    font-size: 3rem;
+}
+
+.transformation-main-cont p{
+    font-size: 1.2rem;
+    color: #c7a3a8;
+}
+
+.btn-cont{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    width: 300px;
+}
+
+.shop-btn{
+    background-color: #fff;
+    color: #85888b;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.shop-btn:hover{
+    background-color: #ecd5d5;
+}
+
+.more-btn{
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    font-weight: 500;
+}
+
+.new-home{
+    width: 80%;
+    height: 550px;
+    margin-top: 20px;
+}
+
+.new-home > img{
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+}
+
+@media screen and (max-width: 550px) {
+    .btn-cont{
+        width: 300px;
+    }
+    
+    .shop-btn, .more-btn{
+        padding: 10px 20px;
+    }
+    
+    .new-home{
+        width: 90%;
+        height: 450px;
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .btn-cont{
+        width: 100%;
+    }
+    
+    .new-home{
+        width: 90%;
+        height: 200px;
+        margin-top: 20px;
+    }
+
+    .transformation-main-cont h2{
+        font-size: 2rem;
+    }
+        
+    .transformation-main-cont p{
+        font-size: 0.9rem;
+    }
+
+    .new-home > img{
+        border-radius: 15px;
+        height: 100%;
+    }
+}
