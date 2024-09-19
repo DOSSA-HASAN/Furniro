@@ -6,6 +6,7 @@ import Section02 from './Home/Section02'
 import Transformation from './Home/Transformation'
 import { ProductsContext } from './ProductsContext'
 import NavBar from './navbar/NavBar'
+import Footer from './navbar/footer/Footer'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Partners />
         <Transformation />
         <ExtraLinks />
+        <Footer />
       </ProductsContext>
     </>
   )

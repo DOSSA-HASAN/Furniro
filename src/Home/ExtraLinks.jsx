@@ -3,7 +3,7 @@ import './extralinks.css'
 
 function ExtraLinks() {
     return (
-        <section className='m-auto links-main-cont'>
+        <section className='links-main-cont'>
             <article className='links-text-cont'>
                 <h2>Welcome to Furniro</h2>
                 <p>Your destination for sleek and modern furniture.</p>
