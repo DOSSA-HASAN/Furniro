@@ -1,25 +1,21 @@
 import './App.css'
-import ExtraLinks from './Home/ExtraLinks'
-import Hero from './Home/Hero'
-import Partners from './Home/Partners'
-import Section02 from './Home/Section02'
-import Transformation from './Home/Transformation'
+import Home from './Home/Home'
 import { ProductsContext } from './ProductsContext'
-import NavBar from './navbar/NavBar'
-import Footer from './navbar/footer/Footer'
+import Login from './authenticate/Login'
+import Signup from './authenticate/Signup'
+import Shop from './shop/Shop'
+import Contact from './contact/Contact'
 
 function App() {
 
   return (
     <>
       <ProductsContext>
-        <NavBar />
-        <Hero />
-        <Section02 />
-        <Partners />
-        <Transformation />
-        <ExtraLinks />
-        <Footer />
+        <Home />
+        <Shop />
+        <Signup />
+        <Login />
+        <Contact />
       </ProductsContext>
     </>
   )

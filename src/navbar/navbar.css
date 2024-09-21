@@ -6,7 +6,7 @@
 
 .nav-header{
     width: 100%;
-    margin-bottom: 10px;
+    z-index: 1000;
 }
 
 .m-auto{
