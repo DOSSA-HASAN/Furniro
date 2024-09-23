@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0;
-    height: 100vh;
+    height: 120vh;
 }
 
 .authenticate-text-cont{
@@ -75,6 +75,29 @@
     text-align: center;
 }
 
+.success-mssg-cont, .error-mssg-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px hsl(120, 70%, 74%, 1) solid;
+    border-radius: 15px;
+    background-color: hsl(120, 70%, 74%, 0.5);
+    color: #777575;
+    width: 50%;
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px 10px;
+}
+
+.error-mssg-cont{
+    border-color: hsl(0, 68%, 61%, 1);
+    background-color: hsl(0, 68%, 61%, 0.5);
+}
+
+.success-mssg-cont > p {
+    margin-bottom: 0;
+}
+
 @media screen and (max-width: 768px) {
     .signup-main-cont{
         height: 100%;
@@ -104,5 +127,11 @@
     .signup-form > button{
         width: 90%;
         margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .success-mssg-cont, .error-mssg-cont{
+        width: 90%;
     }
 }

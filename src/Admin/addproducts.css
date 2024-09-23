@@ -1,0 +1,30 @@
+.add-products-form{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.add-products-form > span{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 10px;
+}
+
+.add-products-form > span > label{
+    font-size: 1rem;
+    padding: 10px 0;
+}
+
+.add-products-form > span > input, .add-products-form > span > select{
+    padding: 15px;
+}
+
+@media screen and (max-width: 768px){
+    .add-products-form > span{
+        width: 100%;
+    }
+}

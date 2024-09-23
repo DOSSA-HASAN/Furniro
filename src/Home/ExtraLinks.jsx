@@ -1,5 +1,6 @@
 import React from 'react'
 import './extralinks.css'
+import { Link } from 'react-router-dom'
 
 function ExtraLinks() {
     return (
@@ -10,6 +11,7 @@ function ExtraLinks() {
             </article>
 
             <main className="links-cont">
+                <Link to={'/shop'}>
                 <div className="link">
                     <i className="fa-solid fa-cart-shopping"></i>
                     <span>
@@ -17,7 +19,9 @@ function ExtraLinks() {
                         <p>Browse our wide range of furniture.</p>
                     </span>
                 </div>
+                </Link>
 
+                <Link to={'/add-products'}>
                 <div className="link">
                     <i class="fa-solid fa-plus"></i>
                     <span>
@@ -25,7 +29,9 @@ function ExtraLinks() {
                         <p>Add new products to your cart.</p>
                     </span>
                 </div>
+                </Link>
 
+                <Link to={'/login'}>
                 <div className="link">
                     <i class="fa-solid fa-user"></i>
                     <span>
@@ -33,7 +39,9 @@ function ExtraLinks() {
                         <p>Access your account.</p>
                     </span>
                 </div>
+                </Link>
 
+                <Link to={'/signup'}>
                 <div className="link">
                     <i class="fa-solid fa-user-plus"></i>
                     <span>
@@ -41,7 +49,9 @@ function ExtraLinks() {
                         <p>Create a new account.</p>
                     </span>
                 </div>
+                </Link>
 
+                <Link>
                 <div className="link">
                     <i class="fa-solid fa-gears"></i>
                     <span>
@@ -49,6 +59,7 @@ function ExtraLinks() {
                         <p>Manage your store.</p>
                     </span>
                 </div>
+                </Link>
             </main>
         </section>
     )

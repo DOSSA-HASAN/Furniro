@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Logo from '../assets/logo.png'
 import '../navbar/navbar.css'
+import { Link } from 'react-router-dom';
+import { productsContext } from '../ProductsContext';
 
 function NavBar() {
 
@@ -13,20 +15,20 @@ function NavBar() {
         
         if( currentScroll > prevScroll && currentScroll > 100){
             setIsVisible(false)
-            console.log(isVisible)
+            // console.log(isVisible)
         }
         else{
             setIsVisible(true)
-            console.log(isVisible)
+            // console.log(isVisible)
         }
 
         if(currentScroll > 50){
             setIsFloating(true)
-            console.log(isFloating)
+            // console.log(isFloating)
         }
         else{
             setIsFloating(false);
-            console.log(isFloating)
+            // console.log(isFloating)
         }
 
         setPrevScroll(currentScroll)
@@ -42,14 +44,20 @@ function NavBar() {
     
     const [menuVisible , setMenuVisible] = useState(false)
 
+    const { user } = useContext(productsContext)
+    // console.log(user)
+
+
 
     return (
         <>
             <header className='nav-header'>
                 <main className='m-auto nav-cont'>
-                    <div className="logo-cont">
-                        <img src={Logo} alt="" srcset="" />
-                    </div>
+                    <Link to={'/'}>
+                        <div className="logo-cont">
+                            <img src={Logo} alt="" srcset="" />
+                        </div>
+                    </Link>
 
                     <div className="menu-btn-cont" onClick={() => setMenuVisible(!menuVisible)}>
                         <span></span>
@@ -60,30 +68,45 @@ function NavBar() {
                     {/* convert these to links */}
                     <nav className={`nav-links-cont ${menuVisible ? "mobile-menu links-transition" : ""}`}>
                         <div>
-                            <p>Home</p>
-                            <span></span>
+                            <Link to={'/'}>
+                                <p>Home</p>
+                                <span></span>
+                            </Link>
                         </div>
 
                         <div>
-                            <p>Shop</p>
-                            <span></span>
+                            <Link to={'/shop'}>
+                                <p>Shop</p>
+                                <span></span>
+                            </Link>
                         </div>
 
                         <div>
-                            <p>Product Detail</p>
-                            <span></span>
+                            <Link to={'/add-products'}>
+                                <p>Product Detail</p>
+                                <span></span>
+                            </Link>
                         </div>
                     </nav>
 
                     <div className='info-cont'>
                         <div className='join-us-cont'>
-                            <p>Join Us</p>
-                            <i class="fa-solid fa-arrow-right"></i>
+                            {user ? <Link to={'/profile'}>
+                                <p>{user.email}</p>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </Link>:
+                            <Link to={'/signup'}>
+                                <p>Join Us</p>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </Link>
+                            }
                         </div>
 
                         <div className='contact-us-cont'>
-                            <p>Contact Us</p>
-                            <i class="fa-solid fa-arrow-right"></i>
+                            <Link to={'/contact'}>
+                                <p>Contact Us</p>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </Link>
                         </div>
 
                     </div>

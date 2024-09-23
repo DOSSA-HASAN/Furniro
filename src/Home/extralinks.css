@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+.links-cont > a{
+    width: 100%;
+}
+
 .links-main-cont{
     background-color: #712028;
     background-image: url(../assets/modern-sofas.jpeg);

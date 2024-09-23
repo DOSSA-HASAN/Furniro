@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import '../Home/section02.css'
 import StylishChairs from '../assets/stylish-chairs.jpeg'
 import { productsContext } from '../ProductsContext'
+import { Link } from 'react-router-dom'
 
 function Section02() {
 
@@ -37,7 +38,7 @@ function Section02() {
                         </div>
 
                         <div className="button-cont">
-                            <button className='shop-now-btn'>Shop Now <i class="fa-solid fa-arrow-right"></i></button>
+                            <Link to={'/shop'}><button className='shop-now-btn'>Shop Now <i class="fa-solid fa-arrow-right"></i></button></Link>
                             <button className='learn-more-btn'>Learn More</button>
                         </div>
                     </article>
