@@ -83,7 +83,7 @@ function Login() {
                     <input type="email" placeholder='Enter Email Address' value={email} onChange={(e) => {setEmail(e.target.value)}}/>
                     <input type="password" placeholder='Enter Password' value={password} onChange={(e) => {setPassword(e.target.value)}}/>
                     <button>Login</button>
-                    <p className='redirect-to-login'>Don't have an account, click here to Signip</p>
+                    <p className='redirect-to-login'>Don't have an account, click here to Signup</p>
                 </form>
             </main>
             <Footer />
