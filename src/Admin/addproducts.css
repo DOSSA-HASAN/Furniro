@@ -23,6 +23,20 @@
     padding: 15px;
 }
 
+.submit-btn-cont{
+    display: flex;
+    width: 100%;
+}
+
+.submit-btn-cont > button{
+    margin: 20px auto;
+    background-color: #000;
+    border-radius: 15px;
+    padding: 15px 40px;
+    color: #fff;
+    border: none;
+}
+
 @media screen and (max-width: 768px){
     .add-products-form > span{
         width: 100%;
