@@ -44,7 +44,7 @@ function AddProducts() {
                 const imageURl = await getDownloadURL(snapshot.ref)
                 console.log(imageURl)
     
-                await setDoc(doc(db, `product-${productType}`, docID),{
+                await setDoc(doc(db, 'product', docID),{
                     productName,
                     productType, 
                     productDescription,
@@ -104,7 +104,7 @@ function AddProducts() {
 
                 <span>
                     <label htmlFor="type">Product Type</label>
-                    <select id="type" value={productType} required onChange={(e) => setProductType(e.target.value.toLowerCase())}>
+                    <select id="type" required onChange={(e) => setProductType(e.target.value.toLowerCase())}>
                         <option value="" selected hidden>Select Product Type</option>
                         { furnitureItems.map((item, index) => (
                             <option value={item} key={index}>{item}</option>
