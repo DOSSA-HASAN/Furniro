@@ -39,6 +39,39 @@
     align-items: center;
 }
 
+.fetched-products-main-cont{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.fetched-product{
+    width: auto;
+    padding: 15px 0;
+}
+
+.fetched-product > img{
+    border-radius: 15px;
+    height: 300px;
+    width: 100%;
+}
+
+.fetched-product > p{
+    color: #a0a7af;
+    font-weight: 700;
+    padding: 10px;
+}
+
+.fetched-product:hover > img{
+    box-shadow: 0 0 10px #000;
+}
+
+.fetched-product:hover{
+    cursor: pointer;
+}
+
 @media screen and (max-width: 500px){
     .shop-hero-main > h1{
         font-size: 3rem;

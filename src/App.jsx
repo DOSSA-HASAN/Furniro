@@ -7,6 +7,7 @@ import Shop from './shop/Shop'
 import Contact from './contact/Contact'
 import AddProducts from './Admin/AddProducts'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import SpecificProduct from './shop/SpecificProduct'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path='/add-products' element={<AddProducts />} />
+          <Route exact path='/shop/product/:id' element={<SpecificProduct />} />
           {/* <Route exact path='' element={} /> */}
           </Routes>
       </BrowserRouter>
