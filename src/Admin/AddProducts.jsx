@@ -16,9 +16,10 @@ function AddProducts() {
     const [productType, setProductType] =useState("")
     const [productDescription, setProductDescription] =useState("")
     const [quantityAvailable, setQuantityavailable] =useState("")
-    const [productWeight, setProductWeight] = useState("")
+    const [productDimensions, setProductDimensions] = useState({width: 0, height: 0, len: 0})
     const [productImage, setProductImage] = useState("")
     const [productDemoImage, setProductDemoImage] = useState("")
+    const [productPrice, setProductPrice] = useState("")
 
     const [successMssg, setSuccessMssg] = useState('');
     const [errorMssg, setErrorMssg] = useState('');
@@ -49,7 +50,8 @@ function AddProducts() {
                     productType, 
                     productDescription,
                     quantityAvailable, 
-                    productWeight,
+                    ...productDimensions,
+                    productPrice,
                     image: imageURl
                 })
     
@@ -65,9 +67,10 @@ function AddProducts() {
                 setProductType("")
                 setProductDescription("")
                 setQuantityavailable("")
-                setProductWeight("")
+                setProductDimensions({width: 0, height: 0, len: 0})
                 setProductImage("")
                 setProductDemoImage("")
+                setProductPrice("")
             }
         }
         else{
@@ -114,7 +117,12 @@ function AddProducts() {
 
                 <span>
                     <label htmlFor="description">Description</label>
-                    <input type="text" value={productDescription} id='description' placeholder='Enter product description' required onChange={(e) => setProductDescription(e.target.value.toUpperCase())}/>
+                    <input type="text" value={productDescription} id='description' placeholder='Enter product description' required onChange={(e) => setProductDescription(e.target.value.toUpperCase())} maxLength={300}/>
+                </span>
+
+                <span>
+                    <label htmlFor="price">Price</label>
+                    <input type="number" value={productPrice} id='price' placeholder='Enter product price' required onChange={(e) => setProductPrice(e.target.value)}/>
                 </span>
 
                 <span>
@@ -123,8 +131,18 @@ function AddProducts() {
                 </span>
 
                 <span>
-                    <label htmlFor="weight">Product Weight</label>
-                    <input type="number" value={productWeight} id='weight' placeholder='Enter product net weight' required onChange={(e) => setProductWeight(e.target.value)}/>
+                    <label htmlFor="width">Product Width</label>
+                    <input type="number" value={productDimensions.width} id='weight' placeholder='Enter product Width' required onChange={(e) => setProductDimensions((prevState) => ({...prevState, width: e.target.value}))}/>
+                </span>
+
+                <span>
+                    <label htmlFor="height">Product Height</label>
+                    <input type="number" value={productDimensions.height} id='height' placeholder='Enter product Height' required onChange={(e) => setProductDimensions((prevState) => ({...prevState, height: e.target.value}))}/>
+                </span>
+
+                <span>
+                    <label htmlFor="lenght">Product Lenght</label>
+                    <input type="number" value={productDimensions.len} id='lenght' placeholder='Enter product Lenght' required onChange={(e) => setProductDimensions((prevState) => ({...prevState, len: e.target.value}))}/>
                 </span>
 
                 <span>

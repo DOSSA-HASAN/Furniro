@@ -3,6 +3,7 @@ import { useParams } from 'react-router'
 import NavBar from '../navbar/Navbar'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../firebaseconfig/FirebaseConfig'
+import Footer from '../footer/Footer'
 
 function SpecificProduct() {
 
@@ -10,6 +11,19 @@ function SpecificProduct() {
 
     //variable to hold products info after fetch
     const [product, setProduct] = useState([])
+
+    //number to add to cart
+    const [counter, setCounter] = useState(1)
+    //handle cart counter
+    const handleCartCounterIncrement = () => {
+        setCounter(counter + 1)
+    }
+
+    const handleCartCounterDecrement = () => {
+        if(counter > 1){
+            setCounter(counter - 1)
+        }
+    }
     
     //fetch doc with matching id
     useEffect(() => {
@@ -24,28 +38,41 @@ function SpecificProduct() {
     return (
         <>
             <NavBar />
-            <section className='m-auto'>
+            <section className='m-auto specific-product-section'>
                 {product ? 
                 <>
-                    <figure>
+                    <figure className='product-img-cont'>
                         <img src={product.image} alt="" />
                     </figure>
 
-                    <article>
+                    <article className='prodcut-info-cont'>
                         <h1>{product.productName}</h1>
                         <div>
-                            <p>{product.price}</p>
+                            <p className='price'>{product.productPrice}$</p>
+                            <p className='description'>{product.productDescription}</p>
                         </div>
 
                         <div className="purchase-btn-cont">
-                            <button>Buy Now</button>
-                            <button>Add to Cart</button>
+                            <span className='add-to-cart-cont'>
+                                <div className="cart-counter">
+                                    <button onClick={handleCartCounterIncrement}>+</button>
+                                    <p>{counter}</p>
+                                    <button onClick={handleCartCounterDecrement}>-</button>
+                                </div>
+                                <button className='add-to-cart-btn'>Add to Cart</button>
+                            </span>
+                            
+                            
+                            <span>
+                                <button className='buy-btn'>Buy Now</button>
+                            </span>
                         </div>
                     </article>
                 </>
 
                 : <p>Loading...</p>}
             </section>
+            <Footer />
         </>
         
     )
