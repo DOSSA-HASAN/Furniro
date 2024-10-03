@@ -25,7 +25,7 @@ function Login() {
 
         try {
             const userCredentials = await signInWithEmailAndPassword(auth, email, password)
-            setUserData(userCredentials.user)
+            setUserData({...userCredentials.user, uid: userCredentials.user.uid})
             console.log(userData)
             setEmail("")
             setPassword("")
@@ -36,7 +36,7 @@ function Login() {
             const userRef = doc(db, "users", userCredentials.user.uid)
             const userDoc = await getDoc(userRef);
             if(userDoc.exists()){
-                setUserData(userDoc.data())
+                setUserData({...userDoc.data(), uid: userDoc.id})
                 console.log(userData)
                 setSuccessMssg("Successfully logged in as " + userDoc.data().email)
                 setErrorMssg("")

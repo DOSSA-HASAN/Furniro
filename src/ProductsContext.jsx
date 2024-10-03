@@ -92,8 +92,8 @@ function ProductsContext({ children }) {
                 const userDoc = await getDoc(docRef)
 
                 if(userDoc.exists()){
-                    setUserData(userDoc.data())
-                    setUser(userDoc.data())
+                    setUserData({...userDoc.data(), uid: userDoc.id})
+                    setUser({...userDoc.data(), uid: userDoc.id})
                 }
                 else{
                     setUserData(null)

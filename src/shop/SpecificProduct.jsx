@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import NavBar from '../navbar/Navbar'
-import { doc, getDoc } from 'firebase/firestore'
+import { addDoc, doc, getDoc, increment, updateDoc, setDoc } from 'firebase/firestore'
 import { db } from '../firebaseconfig/FirebaseConfig'
 import Footer from '../footer/Footer'
+import { productsContext } from '../ProductsContext'
 
 function SpecificProduct() {
 
     const { id } = useParams()
+
+    const [successMssg, setSuccessMssg] = useState("")
+    const [errorMssg, setErrorMssg] = useState("")
+
+    const { userData } = useContext(productsContext)
 
     //variable to hold products info after fetch
     const [product, setProduct] = useState([])
@@ -30,10 +36,47 @@ function SpecificProduct() {
         const getProductInfo = async () => {
             const docRef = doc(db, "product", id)
             const snapShot = await getDoc(docRef)
-            setProduct(snapShot.data())
+            setProduct({...snapShot.data(), productID: id})
+            console.log(product)
+            console.log(userData)
         }
         getProductInfo()
     }, [])
+
+    const handleAddToCart = async (e) => {
+        e.preventDefault();
+
+        console.log("Adding")
+
+        try {
+            //check if similar doc exists
+            const cartRef = doc(db, "users", userData.uid, "cart", product.productID);
+
+            const cartSnapshot = await getDoc(cartRef)
+
+            if(cartSnapshot.exists()){
+                await updateDoc(cartRef, {quantity: increment(counter)})
+                .then(() => {
+                    setSuccessMssg("Added to cart")
+                })
+                .catch((error) => {console.log(error.message)})
+            }
+            else{
+                await setDoc(doc(db, "users", userData.uid, "cart", product.productID), {
+                    quantity: counter,
+                    id: product.productID
+                })
+                .then(() => {
+                    setSuccessMssg("Added to cart")
+                })
+                .catch((error) => {console.log(error.message)})
+            }
+        } catch (error) {
+            console.log(error.message)
+        }
+
+        
+    }
 
     return (
         <>
@@ -59,7 +102,7 @@ function SpecificProduct() {
                                     <p>{counter}</p>
                                     <button onClick={handleCartCounterDecrement}>-</button>
                                 </div>
-                                <button className='add-to-cart-btn'>Add to Cart</button>
+                                <button className='add-to-cart-btn' onClick={handleAddToCart}>Add to Cart</button>
                             </span>
                             
                             
