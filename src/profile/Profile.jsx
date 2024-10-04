@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import NavBar from '../navbar/Navbar'
-import { collection, doc, getDocs } from 'firebase/firestore'
+import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore'
 import { db } from '../firebaseconfig/FirebaseConfig'
 import { productsContext } from '../ProductsContext'
+import './profile.css'
 
 function Profile() {
 
     //users data
-    const { userData } = useContext(productsContext)
+    const {userData} = useContext(productsContext)
 
     const [searchText, setSearchText] = useState('')
 
@@ -17,56 +18,60 @@ function Profile() {
     //filtered products based on searchText
     const [filteredProducts, setFilteredProducts] = useState([])
 
-    try {
-            //fetch products on load
-            useEffect(() => {
-                const fetchProductsFromCart = async () => {
-                    // const cartRef = doc(db, "users", userData.uid, "cart")
-                    const snapShot = await getDocs(collection(db, "users", userData.uid, "cart"))
-                    setFetchedProducts(snapShot.docs.map((doc) => ({...doc.data(), id: doc.id})))
-                    setFilteredProducts(snapShot.docs.map((doc) => ({...doc.data(), id: doc.id})))
-                    if(fetchedProducts){
-                        console.log(fetchedProducts)
-                        console.log(filteredProducts)
-                    }
+    useEffect(() => {
+        if(userData){
+            const getCartInfo = async () => {
+                try {
+                    const cartDocs = await getDocs(collection(db, "users", userData.uid, "cart"))
+                    setFetchedProducts(cartDocs.docs.map((doc) => ({...doc.data(), id: doc.id})))
+                    setFilteredProducts(cartDocs.docs.map((doc) => ({...doc.data(), id: doc.id})))
+                    console.log(filteredProducts)
+                    console.log(fetchedProducts)
+                } catch (error) {
+                    console.log(error.message)
                 }
-                return() => fetchProductsFromCart()
-            }, [])
-    } catch (error) {
-        console.log(error.message)
+            }
+            getCartInfo()
+        }
+    }, [userData, filteredProducts])
+
+    const handleDelete = async (id) => {
+        const docRef = doc(db, "users", userData.uid, "cart", id)
+        await deleteDoc(docRef)
     }
-
-
-    // const handleSearchInCart = (e) => {
-    //     setSearchText(e)
-    //     const searchText = e;
-    //     const filtered = fetchedProducts.filter((product) => product.productName.toUpperCase().includes(searchText.toUpperCase()))
-
-    //     setFilteredProducts(...filtered)
-
-    // }
 
     return (
         <>
             <NavBar />
             <section>
-                {/* <input type="text" value={searchText} onChange={(e) => handleSearchInCart(e.target.value)}/> */}
-
-                <main>
+                <table className='cart-table'>
+                    <tr className='table-header'>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                    </tr>
                 {filteredProducts ? 
-
-                    filteredProducts.map((product) => {
-                        <div key={product.productID}>
-                            <p>{product.productName}</p>
-
-                        </div>
-                    })
+                    filteredProducts.map((product) => (
+                        <>
+                            <tr key={product.id}>
+                                <td className='img-row'><img src={product.image} alt="" /></td>
+                                <td><p>{product.productPrice}</p></td>
+                                <td><p>{product.productName}</p></td>
+                                <td><p>{product.quantity}</p></td>
+                                <td><p>{product.productPrice * product.quantity}</p></td>
+                                <td onClick={() => handleDelete(product.id)}><i className="fa-solid fa-trash"></i></td>
+                            </tr>
+                        </>
+                        
+                    ))
 
                     :
                     <p>Your cart is empty, click here to start shopping</p>
 
                 }
-                </main>
+                </table>
+
 
                 
             </section>
