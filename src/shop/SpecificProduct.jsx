@@ -56,31 +56,38 @@ function SpecificProduct() {
 
             if(cartSnapshot.exists()){
                 await updateDoc(cartRef, {quantity: increment(counter)})
-                .then(() => {
-                    setSuccessMssg("Added to cart")
-                })
-                .catch((error) => {console.log(error.message)})
+                setSuccessMssg("Added to cart")
             }
             else{
                 await setDoc(doc(db, "users", userData.uid, "cart", product.productID), {
                     quantity: counter,
-                    id: product.productID
+                    ...product
                 })
-                .then(() => {
-                    setSuccessMssg("Added to cart")
-                })
-                .catch((error) => {console.log(error.message)})
+                setSuccessMssg("Added to cart")
+                
             }
         } catch (error) {
             console.log(error.message)
         }
-
-        
     }
+
+    useEffect(() => {
+        if(successMssg){
+            setTimeout(() => {
+                setSuccessMssg("")
+            }, 3000)
+            setCounter(1)
+        }
+    }, [successMssg])
+
+
 
     return (
         <>
             <NavBar />
+                <div className={successMssg ? 'success-mssg-cont' : ''}>
+                    {successMssg ? <p>{successMssg}</p> : ''}
+                </div>
             <section className='m-auto specific-product-section'>
                 {product ? 
                 <>
@@ -93,6 +100,7 @@ function SpecificProduct() {
                         <div>
                             <p className='price'>{product.productPrice}$</p>
                             <p className='description'>{product.productDescription}</p>
+                            <p className='dimensions'>{product.width} x {product.height} x {product.len}</p>
                         </div>
 
                         <div className="purchase-btn-cont">
