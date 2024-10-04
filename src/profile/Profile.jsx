@@ -56,10 +56,10 @@ function Profile() {
                         <>
                             <tr key={product.id}>
                                 <td className='img-row'><img src={product.image} alt="" /></td>
-                                <td><p>{product.productPrice}</p></td>
+                                <td><p>{product.productPrice} $</p></td>
                                 <td><p>{product.productName}</p></td>
-                                <td><p>{product.quantity}</p></td>
-                                <td><p>{product.productPrice * product.quantity}</p></td>
+                                <td><p className='quantity-box'>{product.quantity}</p></td>
+                                <td><p>{product.productPrice * product.quantity} $</p></td>
                                 <td onClick={() => handleDelete(product.id)}><i className="fa-solid fa-trash"></i></td>
                             </tr>
                         </>

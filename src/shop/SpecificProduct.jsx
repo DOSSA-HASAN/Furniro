@@ -113,10 +113,7 @@ function SpecificProduct() {
                                 <button className='add-to-cart-btn' onClick={handleAddToCart}>Add to Cart</button>
                             </span>
                             
-                            
-                            <span>
-                                <button className='buy-btn'>Buy Now</button>
-                            </span>
+                            <button className='buy-btn'>Buy Now</button>
                         </div>
                     </article>
                 </>

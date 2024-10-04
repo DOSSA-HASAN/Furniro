@@ -49,3 +49,9 @@
 .img-row > img{
     width: 100px;
 }
+
+.quantity-box{
+    border: 1px solid;
+    padding: 10px 15px;
+    border-radius: 5px;
+}

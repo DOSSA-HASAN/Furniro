@@ -42,16 +42,16 @@ function ProductCard() {
     return (
         <>
             <section className='m-auto products-list-section'>
-                <header>
+                <header className='search-and-sort-cont'>
                     <input type="text" placeholder='Search for consice products' onChange={(e) => handleSearch(e.target.value)}/>
 
-                    <div className="filter-cont">
+                    {/* <div className="filter-cont">
                         <select name="" id="">
                             <option value="none" selected>Sort By</option>
                             <option value="price" >Price asc</option>
                             <option value="available" >Available</option>
                         </select>
-                    </div>
+                    </div> */}
                 </header>
                     
                     <main className='fetched-products-main-cont'>
