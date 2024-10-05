@@ -10,6 +10,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import SpecificProduct from './shop/SpecificProduct'
 import Error404 from './Error404'
 import Profile from './profile/Profile'
+import Checkout from './shop/Checkout'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route exact path='/add-products' element={<AddProducts />} />
           <Route exact path='/shop/product/:id' element={<SpecificProduct />} />
           <Route exact path='/profile' element={<Profile />} />
+          <Route exact path='/checkout/:id' element={<Checkout />} />
           <Route  path='*' element={<Error404 />} />
           {/* <Route exact path='' element={} /> */}
           </Routes>

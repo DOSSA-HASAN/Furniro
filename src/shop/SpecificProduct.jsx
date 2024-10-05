@@ -5,6 +5,7 @@ import { addDoc, doc, getDoc, increment, updateDoc, setDoc } from 'firebase/fire
 import { db } from '../firebaseconfig/FirebaseConfig'
 import Footer from '../footer/Footer'
 import { productsContext } from '../ProductsContext'
+import { Link } from 'react-router-dom'
 
 function SpecificProduct() {
 
@@ -80,8 +81,6 @@ function SpecificProduct() {
         }
     }, [successMssg])
 
-
-
     return (
         <>
             <NavBar />
@@ -113,7 +112,7 @@ function SpecificProduct() {
                                 <button className='add-to-cart-btn' onClick={handleAddToCart}>Add to Cart</button>
                             </span>
                             
-                            <button className='buy-btn'>Buy Now</button>
+                            <Link to={`/checkout/${product.productID}`} className='buy-btn'>Buy Now</Link>
                         </div>
                     </article>
                 </>

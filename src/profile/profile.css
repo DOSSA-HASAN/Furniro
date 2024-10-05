@@ -55,3 +55,18 @@
     padding: 10px 15px;
     border-radius: 5px;
 }
+
+.checkout-btn-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkout-btn{
+    padding: 15px 30px;
+    border: none;
+    border-radius: 15px;
+    color: #fff;
+    font-weight: 600;
+    background-color: #720813;
+}

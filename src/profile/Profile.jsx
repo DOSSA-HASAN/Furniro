@@ -40,6 +40,10 @@ function Profile() {
         await deleteDoc(docRef)
     }
 
+    const handleCheckout = () => {
+        
+    }
+
     return (
         <>
             <NavBar />
@@ -72,7 +76,11 @@ function Profile() {
                 }
                 </table>
 
-
+                {filteredProducts && 
+                <div className="checkout-btn-cont">
+                    <button className='checkout-btn' >Checkout All Items</button>
+                </div>
+                }
                 
             </section>
         </>
