@@ -25,6 +25,7 @@ function Checkout() {
     const [email, setEmail] = useState("")
     const [additionalInfo, setAdditionalInfo] = useState("")
 
+
     useEffect(() => {
         try {
             const fetchProduct = async () => {
@@ -36,7 +37,7 @@ function Checkout() {
         } catch (error) {
             console.log(error.message)
         }
-    }, [])
+    },)
 
 
     return (

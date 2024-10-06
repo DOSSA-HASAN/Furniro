@@ -11,11 +11,59 @@ import ContemporaryTables from './assets/contemporary-tables.jpeg'
 import LuxuryBeds from './assets/luxury-beds.jpeg'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth, db } from './firebaseconfig/FirebaseConfig'
-import { doc, getDoc } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
 
 const productsContext = createContext();
 
 function ProductsContext({ children }) {
+
+    const [userData, setUserData] = useState(null);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if(user){
+                const docRef = doc(db, "users", user.uid)
+                const userDoc = await getDoc(docRef)
+
+                console.log(user)
+                console.log(userDoc)
+
+                if(userDoc.exists()){
+                    setUserData({...userDoc.data(), uid: userDoc.id})
+                    setUser({...userDoc.data(), uid: userDoc.id})
+                }
+                else{
+                    setUserData(null)
+                    setUser(null)
+                }
+            }
+            else{
+                    setUserData(null)
+                    setUser(null)
+            }
+        })
+        return () => unsubscribe();
+    }, [])
+    //cart items
+    const [cart, setCart] = useState([])
+
+    //fetch products on load
+    const fetchCartItem = async () => {
+        try {
+            if(userData){
+                const cartSnapshot = await getDocs(collection(db, `users/${userData.uid}/cart`))
+                setCart(cartSnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+            }
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+    useEffect(() => {
+        fetchCartItem()
+        console.log("fetching")
+    }, [])
 
     const [productsList, setProductsList ] = useState({
         "Sofas" : {ImgURL: SofaImg},
@@ -81,28 +129,6 @@ function ProductsContext({ children }) {
         "Cabinets",
         "Console Cabinets"
         ];
-
-    const [userData, setUserData] = useState(null);
-    const [user, setUser] = useState(null);
-
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            if(user){
-                const docRef = doc(db, "users", user.uid)
-                const userDoc = await getDoc(docRef)
-
-                if(userDoc.exists()){
-                    setUserData({...userDoc.data(), uid: userDoc.id})
-                    setUser({...userDoc.data(), uid: userDoc.id})
-                }
-                else{
-                    setUserData(null)
-                    setUser(null)
-                }
-            }
-        })
-        return () => unsubscribe();
-    }, )
 
     const countries = {
         AF: "Afghanistan",
@@ -349,7 +375,7 @@ function ProductsContext({ children }) {
     
     
     return (
-        <productsContext.Provider value={{productsList, figItems, furnitureItems, setUserData, userData, user, countries}}>
+        <productsContext.Provider value={{productsList, figItems, furnitureItems, setUserData, userData, user, countries, cart, setCart, fetchCartItem}}>
             { children }
         </productsContext.Provider>
     )

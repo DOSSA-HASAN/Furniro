@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import NavBar from '../navbar/Navbar'
+import NavBar from '../navbar/NavBar'
 import { addDoc, doc, getDoc, increment, updateDoc, setDoc } from 'firebase/firestore'
 import { db } from '../firebaseconfig/FirebaseConfig'
 import Footer from '../footer/Footer'
@@ -10,6 +10,9 @@ import { Link } from 'react-router-dom'
 function SpecificProduct() {
 
     const { id } = useParams()
+
+    //global cart 
+    const { cart, fetchCartItem } = useContext(productsContext)
 
     const [successMssg, setSuccessMssg] = useState("")
     const [errorMssg, setErrorMssg] = useState("")
@@ -58,6 +61,7 @@ function SpecificProduct() {
             if(cartSnapshot.exists()){
                 await updateDoc(cartRef, {quantity: increment(counter)})
                 setSuccessMssg("Added to cart")
+                fetchCartItem()
             }
             else{
                 await setDoc(doc(db, "users", userData.uid, "cart", product.productID), {
@@ -65,7 +69,7 @@ function SpecificProduct() {
                     ...product
                 })
                 setSuccessMssg("Added to cart")
-                
+                fetchCartItem()        
             }
         } catch (error) {
             console.log(error.message)

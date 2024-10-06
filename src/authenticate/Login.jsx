@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import NavBar from '../navbar/NavBar'
 import BedImg from '../assets/beds.jpeg'
 import Footer from '../footer/Footer'
@@ -7,6 +7,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth, db } from '../firebaseconfig/FirebaseConfig'
 import { productsContext } from '../ProductsContext'
 import { doc ,getDoc } from 'firebase/firestore'
+import { onAuthStateChanged } from "firebase/auth";
 
 
 function Login() {
@@ -20,6 +21,8 @@ function Login() {
     const [successMssg, setSuccessMssg] = useState('');
     const [errorMssg, setErrorMssg] = useState('');
 
+    const { fetchCartItem } = useContext(productsContext)
+
     const handleLogin = async (e) => {
         e.preventDefault();
 
@@ -29,7 +32,7 @@ function Login() {
             console.log(userData)
             setEmail("")
             setPassword("")
-            // setSuccessMssg("Successfully logged in as " + userCredentials.user.email)
+            setSuccessMssg("Successfully logged in as " + userCredentials.user.email)
             setErrorMssg("")
 
             //fetching users data from db "users"
@@ -37,9 +40,10 @@ function Login() {
             const userDoc = await getDoc(userRef);
             if(userDoc.exists()){
                 setUserData({...userDoc.data(), uid: userDoc.id})
-                console.log(userData)
+                console.log(userDoc.data())
                 setSuccessMssg("Successfully logged in as " + userDoc.data().email)
                 setErrorMssg("")
+                fetchCartItem()
             }
             else{
                 setErrorMssg("User does not exist")
@@ -47,7 +51,7 @@ function Login() {
             }
 
         } catch (error) {
-            setErrorMssg(error.message)
+            setErrorMssg(error.message + "adsasd")
             setSuccessMssg("")
         }
     }

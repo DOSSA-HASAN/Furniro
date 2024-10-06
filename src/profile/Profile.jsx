@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import NavBar from '../navbar/Navbar'
+import NavBar from '../navbar/NavBar'
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore'
 import { db } from '../firebaseconfig/FirebaseConfig'
 import { productsContext } from '../ProductsContext'
@@ -8,7 +8,7 @@ import './profile.css'
 function Profile() {
 
     //users data
-    const {userData} = useContext(productsContext)
+    const { userData, cart, fetchCartItem } = useContext(productsContext)
 
     const [searchText, setSearchText] = useState('')
 
@@ -27,21 +27,18 @@ function Profile() {
                     setFilteredProducts(cartDocs.docs.map((doc) => ({...doc.data(), id: doc.id})))
                     console.log(filteredProducts)
                     console.log(fetchedProducts)
+                    fetchCartItem()
                 } catch (error) {
                     console.log(error.message)
                 }
             }
             getCartInfo()
         }
-    }, [userData, filteredProducts])
+    }, [userData, cart])
 
     const handleDelete = async (id) => {
         const docRef = doc(db, "users", userData.uid, "cart", id)
         await deleteDoc(docRef)
-    }
-
-    const handleCheckout = () => {
-        
     }
 
     return (
