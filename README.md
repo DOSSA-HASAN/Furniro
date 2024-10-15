@@ -41,7 +41,7 @@ To get started with the Furniro project, follow these steps:
 1. **Clone the Repository:**
 
     ```bash
-    git clone https://github.com/your-username/furniro.git
+    git clone https://github.com/DOSSA-HASAN/Furniro.git
     cd furniro
     ```
 
@@ -105,7 +105,7 @@ To get started with the Furniro project, follow these steps:
 1. **Start the Development Server:**
 
     ```bash
-    npm start
+    npm run dev
     ```
 
     This will start the app on `http://localhost:3000`.
