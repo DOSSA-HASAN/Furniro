@@ -101,12 +101,6 @@
 .contact-us-cont:hover a{
     background-color: #f5c5bf;
 }
-/* 
-.join-us-cont, .contact-us-cont{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-} */
 
 .join-us-cont > a > p, .contact-us-cont  > a > p{
     margin-bottom: 0;
