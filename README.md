@@ -13,6 +13,12 @@
 - [File Structure](#file-structure)
 - [License](#license)
 
+## Demo
+
+Check out the live demo of **Furniro** at the following link:
+
+[Live Demo](https://furniro-ke.netlify.app/)
+
 ## Project Overview
 
 Furniro is a user-friendly furniture store built with React and Firebase. It provides seamless navigation between products, user authentication, and a checkout process for purchasing furniture items.
