@@ -23,14 +23,17 @@ function SpecificProduct() {
     const [product, setProduct] = useState([])
 
     //number to add to cart
+    //set quantity
     const [counter, setCounter] = useState(1)
-    //handle cart counter
-    const handleCartCounterIncrement = () => {
-        setCounter(counter + 1)
+
+    const handleCounterIncrement = () => {
+        if(counter >= 1 && counter <= product.quantityAvailable){
+            setCounter(counter + 1)
+        }
     }
 
-    const handleCartCounterDecrement = () => {
-        if(counter > 1){
+    const handleCounterDecrement = () => {
+        if(counter > 1 ){
             setCounter(counter - 1)
         }
     }
@@ -109,9 +112,9 @@ function SpecificProduct() {
                         <div className="purchase-btn-cont">
                             <span className='add-to-cart-cont'>
                                 <div className="cart-counter">
-                                    <button onClick={handleCartCounterIncrement}>+</button>
+                                    <button onClick={handleCounterIncrement}>+</button>
                                     <p>{counter}</p>
-                                    <button onClick={handleCartCounterDecrement}>-</button>
+                                    <button onClick={handleCounterDecrement}>-</button>
                                 </div>
                                 <button className='add-to-cart-btn' onClick={handleAddToCart}>Add to Cart</button>
                             </span>

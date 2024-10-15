@@ -36,7 +36,7 @@ function Checkout() {
     }
 
     const handleCounterDecrement = () => {
-        if(counter > 1 && counter <= product.quantityAvailable){
+        if(counter > 1 ){
             setCounter(counter - 1)
         }
     }
