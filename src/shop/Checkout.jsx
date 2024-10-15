@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import NavBar from '../navbar/Navbar'
+import NavBar from '../navbar/NavBar'
 import Footer from '../footer/Footer'
 import { useParams } from 'react-router'
 import { count, doc, getDoc } from 'firebase/firestore'

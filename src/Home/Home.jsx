@@ -5,7 +5,7 @@ import Partners from './Partners'
 import Transformation from './Transformation'
 import ExtraLinks from './ExtraLinks'
 import Footer from '../footer/Footer'
-import Navbar from '../navbar/Navbar'
+import Navbar from '../navbar/NavBar'
 
 function Home() {
     return (

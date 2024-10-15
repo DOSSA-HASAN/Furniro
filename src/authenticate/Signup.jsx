@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import BedImg from '../assets/beds.jpeg'
 import NavBar from '../navbar/NavBar'
 import './authenticate.css'
 import Footer from '../footer/Footer'
