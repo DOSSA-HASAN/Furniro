@@ -1,9 +1,9 @@
-import { collection, getDocs, limit, query, snapshotEqual, startAfter } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebaseconfig/FirebaseConfig'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
-function ProductCard() {
+function ProductCard({ sectionRef }) {
 
 
     const [fetchedProducts, setFetchedProducts] = useState([]);
@@ -41,7 +41,7 @@ function ProductCard() {
 
     return (
         <>
-            <section className='m-auto products-list-section'>
+            <section ref={sectionRef} className='m-auto products-list-section'>
                 <header className='search-and-sort-cont'>
                     <input type="text" placeholder='Search for consice products' onChange={(e) => handleSearch(e.target.value)}/>
 

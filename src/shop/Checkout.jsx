@@ -148,7 +148,6 @@ function Checkout() {
                             <p>Total</p>
                             <p>{product.productPrice * counter} $</p>
                         </span>
-                        
                     </> 
                     :
                         <p>Loading...</p>

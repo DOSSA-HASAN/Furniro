@@ -83,7 +83,7 @@ function NavBar() {
 
                         <div>
                             <Link to={'/add-products'}>
-                                <p>Product Detail</p>
+                                <p>Add Products</p>
                                 <span></span>
                             </Link>
                         </div>

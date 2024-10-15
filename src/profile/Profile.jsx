@@ -4,6 +4,7 @@ import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore'
 import { db } from '../firebaseconfig/FirebaseConfig'
 import { productsContext } from '../ProductsContext'
 import './profile.css'
+import { Link } from 'react-router-dom'
 
 function Profile() {
 
@@ -45,24 +46,19 @@ function Profile() {
         <>
             <NavBar />
             <section>
-                <table className='cart-table'>
-                    <tr className='table-header'>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Subtotal</th>
-                    </tr>
                 {filteredProducts ? 
                     filteredProducts.map((product) => (
                         <>
-                            <tr key={product.id}>
+                            <Link to={`/shop/product/${product.id}`}>
+                            <div className='product-card product-checkout' key={product.id}>
                                 <td className='img-row'><img src={product.image} alt="" /></td>
                                 <td><p>{product.productPrice} $</p></td>
                                 <td><p>{product.productName}</p></td>
                                 <td><p className='quantity-box'>{product.quantity}</p></td>
                                 <td><p>{product.productPrice * product.quantity} $</p></td>
                                 <td onClick={() => handleDelete(product.id)}><i className="fa-solid fa-trash"></i></td>
-                            </tr>
+                            </div>
+                            </Link>
                         </>
                         
                     ))
@@ -71,7 +67,6 @@ function Profile() {
                     <p>Your cart is empty, click here to start shopping</p>
 
                 }
-                </table>
 
                 {filteredProducts && 
                 <div className="checkout-btn-cont">

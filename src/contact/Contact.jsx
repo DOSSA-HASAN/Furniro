@@ -18,7 +18,7 @@ function Contact() {
                 <article className='right-side'>
                     <div className='email-cont'>
                         <p>Reach Out to Us</p>
-                        <a href='mailto:support@furniro'>support@furniro</a>
+                        <a className='support-email' href='mailto:support@furniro'>support@furniro</a>
                     </div>
                     <div className='socials-cont'>
                         <span><p>Follow Us</p></span>

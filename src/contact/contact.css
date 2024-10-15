@@ -34,7 +34,7 @@ a{
     font-size: 3rem;
 }
 
-.left-side> div > p:nth-of-type(1){
+.left-side> div > p:nth-of-type(1), .support-email{
     color: #f5d4d7;
 }
 
