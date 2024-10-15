@@ -1,13 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react'
 import NavBar from '../navbar/NavBar'
-import BedImg from '../assets/beds.jpeg'
 import Footer from '../footer/Footer'
 import './authenticate.css'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth, db } from '../firebaseconfig/FirebaseConfig'
 import { productsContext } from '../ProductsContext'
 import { doc ,getDoc } from 'firebase/firestore'
-import { onAuthStateChanged } from "firebase/auth";
 
 
 function Login() {
